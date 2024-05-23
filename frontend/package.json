@@ -2,11 +2,11 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.tsx",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "dev": "ts-node --esm node_modules/vite/bin/vite.js",
+    "build": "ts-node --esm node_modules/vite/bin/vite.js build",
+    "serve": "ts-node --esm node_modules/vite/bin/vite.js preview"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,9 @@
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.11"
-  }
+  },
+  "type": "module"
 }
