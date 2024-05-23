@@ -1,20 +1,28 @@
 import Koa from 'koa';
-import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
 import json from 'koa-json';
-import routes from './routes';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = new Koa();
-const router = new Router();
+const PORT = process.env.PORT || 4000; // Use the environment variable PORT or default to 4000
 
-app.use(json());
+async function connectDB() {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI!);
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Error connecting to MongoDB', error);
+    }
+}
+
+connectDB();
+
 app.use(bodyParser());
+app.use(json());
 
-router.use('/api', routes.routes());
-
-app.use(router.routes()).use(router.allowedMethods());
-
-const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

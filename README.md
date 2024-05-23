@@ -58,6 +58,7 @@ This project is a full-stack template application using Docker, Koa, MongoDB, Ty
     Create a `.env` file in the `backend` directory and add your MongoDB connection string.
     ```env
     MONGODB_URI=mongodb+srv://yourusername:yourpassword@cluster.mongodb.net/database?retryWrites=true&w=majority
+    PORT=8080
     ```
 
 ## Project Structure
