@@ -1,22 +1,26 @@
-version: '3.8'
-
 services:
   backend:
     build: ./backend
     ports:
-      - "4000:4000"
+      - "5001:8080" # Maps container port 8080 to host port 5001
     environment:
-      - PORT=4000
-      - MONGODB_URI=mongodb://mongo:27017/carbon-react # Use the internal MongoDB URI for Docker networking
+      - PORT=8080
+      - MONGODB_URI=mongodb://mongo:27017/carbon-react
     depends_on:
       - mongo
+    networks:
+      - app-network
 
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "5173:5173" # Maps container port 5173 to host port 5173
+    environment:
+      - VITE_API_URL=http://backend:8080
     depends_on:
       - backend
+    networks:
+      - app-network
 
   mongo:
     image: mongo:latest
@@ -24,6 +28,12 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   mongo-data:

@@ -2,17 +2,18 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.tsx",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview --port 5173"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -22,5 +23,6 @@
     "@vitejs/plugin-react": "^4.3.0",
     "typescript": "^5.4.5",
     "vite": "^5.2.11"
-  }
+  },
+  "type": "module"
 }
